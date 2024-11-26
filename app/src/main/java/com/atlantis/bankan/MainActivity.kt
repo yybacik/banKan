@@ -1,86 +1,86 @@
 package com.atlantis.bankan
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var drawerLayout: DrawerLayout
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var bottomNavigationView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Toolbar'ı ActionBar olarak ayarla
+        setupToolbar()
+        setupDrawer()
+        setupBottomNavigation()
+    }
+
+    private fun setupToolbar() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
+    }
 
-        // DrawerLayout ve NavigationView'i bul
+    private fun setupDrawer() {
         drawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
 
-        // Hamburger menü için ActionBarDrawerToggle kullanımı
         val toggle = ActionBarDrawerToggle(
             this,
             drawerLayout,
-            toolbar,
-            R.string.open_nav,  // Navigation açıldığında gösterilecek açıklama
-            R.string.close_nav  // Navigation kapandığında gösterilecek açıklama
+            findViewById(R.id.toolbar),
+            R.string.open_nav,
+            R.string.close_nav
         )
         drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()  // Hamburger ikonunu senkronize et, görünmesini sağlar
+        toggle.syncState()
 
-        // NavigationView'e tıklama olaylarını ekle
         navView.setNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-
-                R.id.nav_profile -> {
-                    Toast.makeText(this, "Profile clicked", Toast.LENGTH_SHORT).show()
-
-
-                    // Yeni Activity'yi başlatmak
-                    val intent = Intent(this, ProfileActivity::class.java)
-                    startActivity(intent)
-                }
-                R.id.nav_settings -> {
-                    Toast.makeText(this, "Settings clicked", Toast.LENGTH_SHORT).show()
-
-                    val intent = Intent(this, SettingsActivity::class.java)
-                    startActivity(intent)
-                }
-                R.id.nav_share -> {
-                    Toast.makeText(this, "Share clicked", Toast.LENGTH_SHORT).show()
-
-                    val intent = Intent(this, ShareActivity::class.java)
-                    startActivity(intent)
-                }
-                R.id.nav_about -> {
-                    Toast.makeText(this, "About Us clicked", Toast.LENGTH_SHORT).show()
-
-                    val intent = Intent(this, InfoActivity::class.java)
-                    startActivity(intent)
-                }
-
-
-
-
-
-
-
-            }
-            drawerLayout.closeDrawer(GravityCompat.START) // Menü tıklanınca otomatik kapanır
+            handleDrawerNavigation(menuItem.itemId)
             true
         }
     }
 
-    // Geri tuşuna basıldığında, menü açıksa önce menüyü kapat
+    private fun handleDrawerNavigation(itemId: Int) {
+        when (itemId) {
+            R.id.nav_profile -> navigateTo(ProfileActivity::class.java, "Profile clicked")
+            R.id.nav_settings -> navigateTo(SettingsActivity::class.java, "Settings clicked")
+            R.id.nav_share -> navigateTo(ShareActivity::class.java, "Share clicked")
+            R.id.nav_about -> navigateTo(InfoActivity::class.java, "About Us clicked")
+        }
+        drawerLayout.closeDrawer(GravityCompat.START)
+    }
+
+    private fun setupBottomNavigation() {
+        bottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigationView.setOnItemSelectedListener { menuItem ->
+            handleBottomNavigation(menuItem.itemId)
+            true
+        }
+    }
+
+    private fun handleBottomNavigation(itemId: Int) {
+        when (itemId) {
+            R.id.nav_kizilay -> navigateTo(MapActivity::class.java, "Kızılay Bağış Noktaları")
+            R.id.nav_home -> navigateTo(MainActivity::class.java, "Anasayfa")
+            R.id.nav_duyurular -> navigateTo(AlertActivity::class.java, "Duyurular")
+        }
+    }
+
+    private fun navigateTo(activityClass: Class<*>, message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this, activityClass))
+    }
+
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
@@ -88,5 +88,4 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
         }
     }
-
 }

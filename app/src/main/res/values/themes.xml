@@ -1,9 +1,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.BanKan" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <!-- Base application theme that includes the ActionBar -->
+    <style name="Base.Theme.banKan" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your theme's primary color -->
+        <item name="colorPrimary">@color/red</item>
+        <!-- You can add other custom attributes as needed -->
     </style>
 
-    <style name="Theme.BanKan" parent="Base.Theme.BanKan" />
+    <!-- Animation for dialog enter and exit -->
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_out</item>
+    </style>
+
+    <!-- Main application theme that extends the base theme -->
+    <style name="Theme.banKan" parent="Base.Theme.banKan" />
 </resources>

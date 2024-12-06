@@ -26,6 +26,23 @@
             android:value="AIzaSyA7QLl_Q7-m6vRfCSfNWkCfKk407Naxj9c" />
 
         <!-- Uygulama aktiviteleri -->
+
+        <activity
+            android:name=".SignInActivity"
+            android:exported="true"> <!-- SignInActivity'yi başlatıcı aktivite yapıyoruz -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
+
         <activity
             android:name=".AlertActivity"
             android:exported="false" />
@@ -45,15 +62,6 @@
             android:name=".InfoActivity"
             android:exported="false" />
 
-        <!-- Ana Aktivite -->
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

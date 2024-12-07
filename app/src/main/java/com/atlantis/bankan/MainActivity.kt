@@ -1,7 +1,9 @@
 package com.atlantis.bankan
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -88,4 +90,20 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
         }
     }
+    fun openWebsite(view: View) {
+        val url = when (view.id) {
+            R.id.exploreMore -> "https://www.memorial.com.tr/saglik-rehberi/kan-vermenin-faydalari"  // Neden Kan Vermeliyiz? için URL
+            R.id.requestNow -> "https://www.kanver.org/sayfa/kan-hizmetleri/kan-bagisi-nasil-gerceklesir/52" // Kan Bağış Süreci için URL
+            R.id.checkRequests -> "https://gonulluol.org/tr" // Kızılay Etkinlikleri ve Kızılay Gönüllüsü olmak için URL
+            else -> ""  // Geçersiz bir durum için boş bir URL
+        }
+
+        // Eğer url geçerli değilse, işlemi yapma
+        if (url.isNotEmpty()) {
+            val intent2 = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(intent2)
+        }
+    }
+
+
 }

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#ededed">
+
+    <!-- Arama Cubugu Alani -->
+    <LinearLayout
+        android:id="@+id/searchLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <!-- Filtre Butonu -->
+        <ImageButton
+            android:id="@+id/buttonFilter"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_filter"
+            android:scaleType="centerInside"
+            android:background="@drawable/filter_button_background"
+            android:contentDescription="Filtreleme Butonu" />
+
+        <!-- Arama Cubugu -->
+        <EditText
+            android:id="@+id/editTextSearch"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:background="@drawable/search_backgorund"
+            android:hint="Arama"
+            android:layout_weight="1"
+            android:padding="16dp" />
+
+        <!-- Arama Butonu -->
+        <ImageButton
+            android:id="@+id/buttonSearch"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/search_button_background"
+            android:src="@drawable/ic_search"
+            android:contentDescription="Arama Butonu"
+            android:scaleType="centerInside" />
+    </LinearLayout>
+
+
+    <!-- RecyclerView (Duyurular Listesi) -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewAnnouncements"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:padding="16dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchLayout"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <!-- Yeni Duyuru Butonu -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddAnnouncement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="32dp"
+        android:contentDescription="Yeni duyuru oluştur"
+        android:elevation="8dp"
+        android:background="@drawable/search_button_background"
+        android:src="@drawable/ic_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/recyclerViewAnnouncements"
+        app:layout_constraintVertical_bias="0.97" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_kizilay"
-        android:icon="@drawable/ic_kizilay"
+        android:icon="@drawable/kizilayicon1"
         android:title="Kızılay" />
     <item
         android:id="@+id/nav_home"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/homeicon1"
         android:title="Home" />
     <item
         android:id="@+id/nav_duyurular"
-        android:icon="@drawable/ic_duyurular"
+        android:icon="@drawable/alerticon1"
         android:title="Duyurular" />
 </menu>

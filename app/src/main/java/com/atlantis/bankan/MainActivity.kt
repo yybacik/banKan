@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         when (itemId) {
             R.id.nav_kizilay -> navigateTo(MapActivity::class.java, "Kızılay Bağış Noktaları")
             R.id.nav_home -> navigateTo(MainActivity::class.java, "Anasayfa")
-            R.id.nav_duyurular -> navigateTo(AlertActivity::class.java, "Duyurular")
+            R.id.nav_duyurular -> navigateTo(AnnouncementsActivity::class.java, "Duyurular")
         }
     }
 
@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity() {
         val url = when (view.id) {
             R.id.exploreMore -> "https://www.memorial.com.tr/saglik-rehberi/kan-vermenin-faydalari"  // Neden Kan Vermeliyiz? için URL
             R.id.requestNow -> "https://www.kanver.org/sayfa/kan-hizmetleri/kan-bagisi-nasil-gerceklesir/52" // Kan Bağış Süreci için URL
-            R.id.checkRequests -> "https://gonulluol.org/tr" // Kızılay Etkinlikleri ve Kızılay Gönüllüsü olmak için URL
+            R.id.checkEvents -> "https://gonulluol.org/tr" // Kızılay Etkinlikleri ve Kızılay Gönüllüsü olmak için URL
             else -> ""  // Geçersiz bir durum için boş bir URL
         }
 

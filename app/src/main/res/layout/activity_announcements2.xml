@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="#ededed">
 
@@ -34,7 +35,7 @@
             android:id="@+id/editTextSearch"
             android:layout_width="0dp"
             android:layout_height="60dp"
-            android:background="@drawable/search_backgorund"
+            android:background="@drawable/search_background"
             android:hint="Arama"
             android:layout_weight="1"
             android:padding="16dp" />

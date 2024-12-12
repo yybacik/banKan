@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.atlantis.bankan">
-
     <!-- Gerekli izinler -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -23,28 +22,24 @@
         <!-- Google Maps API Key -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyA7QLl_Q7-m6vRfCSfNWkCfKk407Naxj9c" />
-
-        <!-- Uygulama aktiviteleri -->
-
+            android:value="AIzaSyA7QLl_Q7-m6vRfCSfNWkCfKk407Naxj9c" /> <!-- Uygulama aktiviteleri -->
         <activity
             android:name=".SignInActivity"
             android:exported="true"> <!-- SignInActivity'yi başlatıcı aktivite yapıyoruz -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".SignUpActivity"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true" />
-
         <activity
-            android:name=".AlertActivity"
+            android:name=".AnnouncementsActivity"
             android:exported="false" />
         <activity
             android:name=".MapActivity"
@@ -61,7 +56,6 @@
         <activity
             android:name=".InfoActivity"
             android:exported="false" />
-
     </application>
 
 </manifest>

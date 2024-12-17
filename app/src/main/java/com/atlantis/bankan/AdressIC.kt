@@ -1,0 +1,7 @@
+package com.atlantis.bankan
+
+class AdressIC {
+    val cities= listOf("Şehir Seçilmemiş","Trabzon")
+    val cityDistrict= mapOf("Trabzon" to listOf("İlçe Seçilmemiş","Akçaabat","Araklı","Arsin","Beşikdüzü","Çarşıbaşı","Çaykara","Dernekpazarı","Düzköy","Hayrat","Köprübaşı","Maçka","Of","Ortahisar","Sürmene","Şalpazarı","Tonya","Vakfıkebir","Yomra"))
+    val districtHospital=mapOf( "Trabzon" to mapOf("Akçaabat" to listOf("Hastane Seçilmemiş","Akçaabat Haçkalı Baba Devlet Hastanesi","Özel Medical Park Trabzon Hastanesi","Özel 7M Hastanesi"),"Araklı" to listOf("Hastane Seçilmemiş","Araklı Bayram Halil Devlet Hastanesi"),"Of" to listOf("Hastane Seçilmemiş","Of Devlet Hastanesi"),"Ortahisar" to listOf("Hastane Seçilmemiş","Ahi Evren Göğüs Kalp ve Damar Cerrahisi Eğitim ve Araştırma Hastanesi","Fatih Devlet Hastanesi","Kanuni Eğitim ve Araştırma Hastanesi(Numune Kampüsü)","Özel Medical Park Karadeniz Hastanesi","Özel İmperial Hastanesi"),"Sürmene" to listOf("Hastane Seçilmemiş","Süremene Devlet Hastanesi"),"Tonya" to listOf("Hastane Seçilmemiş","Tonya Devlet Hastanesi"),"Vakfıkebir" to listOf("Hastane Seçilmemiş","Vakfıkebir Devlet Hastanesi"),"Yomra" to listOf("Hastane Seçilmemiş","Kanuni Eğitim ve Araştırma Hastanesi (Kaşüstü Kampüsü") ))
+}

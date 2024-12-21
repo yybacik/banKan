@@ -48,7 +48,9 @@
         android:background="@drawable/spinner_background"
         app:layout_constraintTop_toBottomOf="@id/textAddressTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp" />
 
     <!-- İlçe Spinner -->
     <Spinner
@@ -61,7 +63,9 @@
         android:background="@drawable/spinner_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spinnerCity" />
+        app:layout_constraintTop_toBottomOf="@id/spinnerCity"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"/>
 
     <!-- Hastane Spinner -->
     <Spinner
@@ -74,7 +78,9 @@
         android:background="@drawable/spinner_background"
         app:layout_constraintTop_toBottomOf="@id/spinnerDistrict"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"/>
 
     <!-- Ayırıcı Çizgi -->
     <View
@@ -114,7 +120,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textBloodGroupTitle"
         app:layout_constraintTop_toBottomOf="@id/textBloodGroupTitle"
-        app:layout_constraintWidth_percent="0.5" />
+        app:layout_constraintWidth_percent="0.5"
+        android:paddingStart="8dp" />
 
     <!-- Ayırıcı Çizgi -->
     <View
@@ -150,7 +157,8 @@
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:hint="Telefon Numarası"
-        android:paddingLeft="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         android:background="@drawable/spinner_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -167,7 +175,8 @@
         android:layout_marginRight="32dp"
         android:layout_marginTop="16dp"
         android:hint="Hasta ile İlgili Genel Bilgiler"
-        android:paddingLeft="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         android:background="@drawable/spinner_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

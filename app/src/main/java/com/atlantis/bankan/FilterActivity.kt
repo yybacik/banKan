@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.Toast
@@ -37,7 +38,8 @@ class FilterActivity : AppCompatActivity() {
         val spinnerDistrict: Spinner =binding.spinnerDistrict
         val spinnerHospital: Spinner =binding.spinnerHospital
         val spinnerBloodType: Spinner =binding.spinnerBloodGroup
-        val buttonApplyFilter: ImageButton = binding.buttonClose
+        val buttonClose: ImageButton =binding.buttonClose
+        val buttonApplyFilter: Button =binding.buttonList
 
         spinnerDistrict.visibility = View.GONE
         spinnerHospital.visibility= View.GONE
@@ -131,6 +133,10 @@ class FilterActivity : AppCompatActivity() {
             resultIntent.putExtra("selected_hospital", hospital)
             resultIntent.putExtra("selected_bloodType",bloodType)
             setResult(RESULT_OK, resultIntent)
+            finish()
+        }
+
+        buttonClose.setOnClickListener{
             finish()
         }
     }

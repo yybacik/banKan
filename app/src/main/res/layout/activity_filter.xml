@@ -45,7 +45,9 @@
         android:background="@drawable/spinner_background"
         app:layout_constraintTop_toBottomOf="@id/textAddressTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"/>
 
     <!-- İlçe Spinner -->
 
@@ -60,7 +62,9 @@
         android:background="@drawable/spinner_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spinnerCity" />
+        app:layout_constraintTop_toBottomOf="@id/spinnerCity"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"/>
 
     <Spinner
         android:id="@+id/spinnerHospital"
@@ -72,7 +76,9 @@
         android:background="@drawable/spinner_background"
         app:layout_constraintTop_toBottomOf="@id/spinnerDistrict"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"/>
 
     <!-- Ayırıcı Çizgi -->
     <View
@@ -112,7 +118,9 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textBloodGroupTitle"
         app:layout_constraintTop_toBottomOf="@id/textBloodGroupTitle"
-        app:layout_constraintWidth_percent="0.5" />
+        app:layout_constraintWidth_percent="0.5"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"/>
 
     <!-- Listele Butonu -->
     <Button

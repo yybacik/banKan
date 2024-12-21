@@ -14,7 +14,7 @@
         android:layout_height="40dp"
         android:layout_margin="16dp"
         android:contentDescription="Kapat"
-        android:background="@drawable/close_button_background"
+        android:background="@drawable/search_button_background"
         android:src="@drawable/ic_close"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
@@ -113,5 +113,19 @@
         app:layout_constraintStart_toStartOf="@+id/textBloodGroupTitle"
         app:layout_constraintTop_toBottomOf="@id/textBloodGroupTitle"
         app:layout_constraintWidth_percent="0.5" />
+
+    <!-- Listele Butonu -->
+    <Button
+        android:id="@+id/buttonList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#A10808"
+        android:text="LİSTELE"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

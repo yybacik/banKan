@@ -82,7 +82,7 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="32dp"
         android:layout_marginRight="16dp"
         android:background="#a6a6a6"
         app:layout_constraintEnd_toEndOf="parent"
@@ -95,7 +95,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="32dp"
         android:text="KAN GRUBU"
         android:textColor="@android:color/black"
         android:textSize="20sp"
@@ -123,7 +123,7 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="32dp"
         android:layout_marginRight="16dp"
         android:background="#a6a6a6"
         app:layout_constraintEnd_toEndOf="parent"
@@ -135,14 +135,14 @@
         android:id="@+id/textGeneralInformationTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
         android:text="GENEL BİLGİLER"
         android:textColor="@android:color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewSeparator1"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="30dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/viewSeparator1" />
 
     <!-- Telefon Numarası Spinner -->
     <Spinner

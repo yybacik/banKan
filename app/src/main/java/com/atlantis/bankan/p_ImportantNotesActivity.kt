@@ -45,11 +45,11 @@ class p_ImportantNotesActivity : AppCompatActivity() {
             textSize = 12f
             setBackgroundResource(R.drawable.red_button_background)
             layoutParams = LinearLayout.LayoutParams(64, 64).apply {
-                setMargins(8, 0, 0, 0) // Butonun sol boşluğu
+                setMargins(8, 0, 0, 0)
             }
             minWidth = 0
             minHeight = 0
-            setPadding(0, 0, 0, 0) // Buton iç boşlukları sıfırlandı
+            setPadding(0, 0, 0, 0)
             setOnClickListener {
                 (noteLayout.parent as LinearLayout).removeView(noteLayout)
             }

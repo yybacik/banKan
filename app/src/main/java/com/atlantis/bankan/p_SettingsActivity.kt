@@ -16,7 +16,7 @@ class p_SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_psettings)
 
-        // View Bağlantıları
+
         val themeSwitch = findViewById<Switch>(R.id.theme_switch)
         val notificationsSwitch = findViewById<Switch>(R.id.notifications_switch)
         val languageSpinner = findViewById<Spinner>(R.id.language_spinner)
@@ -25,19 +25,19 @@ class p_SettingsActivity : AppCompatActivity() {
         val rootLayout = findViewById<LinearLayout>(R.id.root_layout) // Doğrudan LinearLayout kullanıldı
         val titleTextView = findViewById<TextView>(R.id.title_text_view) // TextView için ayrı değişken
 
-        // Karanlık Tema Değişimi
+
         themeSwitch.setOnCheckedChangeListener { _, isChecked ->
             val message = if (isChecked) "Karanlık Tema Aktif Edildi" else "Açık Tema Aktif Edildi"
             Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
         }
 
-        // Bildirimler Değişimi
+
         notificationsSwitch.setOnCheckedChangeListener { _, isChecked ->
             val message = if (isChecked) "Bildirimler Açıldı" else "Bildirimler Kapatıldı"
             Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
         }
 
-        // Dil Seçimi
+
         val languages = listOf("Türkçe", "İngilizce", "Fransızca", "Almanca")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, languages)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -57,7 +57,7 @@ class p_SettingsActivity : AppCompatActivity() {
             override fun onNothingSelected(parent: AdapterView<*>) {}
         }
 
-        // Metin Boyutu Ayarı
+
         sizeSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 try {
@@ -72,7 +72,7 @@ class p_SettingsActivity : AppCompatActivity() {
             override fun onStopTrackingTouch(seekBar: SeekBar) {}
         })
 
-        // Arka Plan Rengi Değiştirme
+
         colorChangeButton.setOnClickListener {
             try {
                 colorIndex = (colorIndex + 1) % colors.size

@@ -43,7 +43,7 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         button5.setOnClickListener {
-      //      navigateToActivity(p_FingerprintSettingsActivity::class.java)
+            navigateToActivity(p_FingerprintSettingsActivity::class.java)
         }
     }
 

@@ -1,10 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".p_SettingsActivity">
+    android:padding="16dp"
+    android:background="#FFFFFF">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- root_layout id'si eklendi -->
+    <LinearLayout
+        android:id="@+id/root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@drawable/custom_card_background"
+        android:layout_marginBottom="16dp">
+
+        <!-- Başlık -->
+        <TextView
+            android:id="@+id/title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ayarlar"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#D32F2F"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="24dp" />
+
+        <!-- Karanlık Tema Ayarı -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:background="@drawable/note_background"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/theme_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Karanlık Tema"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:gravity="center_vertical" />
+
+            <Switch
+                android:id="@+id/theme_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- Bildirimler Ayarı -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:background="@drawable/note_background"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/notifications_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Bildirimler"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:gravity="center_vertical" />
+
+            <Switch
+                android:id="@+id/notifications_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- Dil Ayarı -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:background="@drawable/note_background"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Dil Seçimi"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:gravity="center_vertical" />
+
+            <Spinner
+                android:id="@+id/language_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- Metin Boyutu Ayarı -->
+        <TextView
+            android:id="@+id/size_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Metin Boyutu"
+            android:textSize="18sp"
+            android:layout_marginBottom="8dp" />
+
+        <SeekBar
+            android:id="@+id/size_seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="12" />
+
+        <!-- Arka Plan Rengi Ayarı -->
+        <Button
+            android:id="@+id/color_change_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Arka Plan Rengini Değiştir"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+
+</ScrollView>

@@ -18,8 +18,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.banKan"
         tools:targetApi="31">
-
-        <!-- Google Maps API Key -->
+        <activity
+            android:name=".p_SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".p_MyInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".p_ImportantNotesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".p_FingerprintSettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FilterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AnnouncementAddActivity"
+            android:exported="false" /> <!-- Google Maps API Key -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyA7QLl_Q7-m6vRfCSfNWkCfKk407Naxj9c" /> <!-- Uygulama aktiviteleri -->

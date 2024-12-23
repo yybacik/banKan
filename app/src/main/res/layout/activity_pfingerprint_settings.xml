@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <!-- Gradyan Arka Plan -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gradient_guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.40" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/gradient_background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/gradient_background"
+        app:layout_constraintBottom_toTopOf="@+id/gradient_guide"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Parmak İzi Simgesi -->
+    <ImageView
+        android:id="@+id/fingerprint_icon"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="64dp"
+        android:contentDescription="Parmak izi simgesi"
+        android:src="@drawable/ic_fingerprint"
+        app:layout_constraintBottom_toTopOf="@+id/fingerprint_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Başlık -->
+    <TextView
+        android:id="@+id/fingerprint_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Parmak İzi Ayarları"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fingerprint_icon" />
+
+    <!-- Bilgilendirme Metni -->
+    <TextView
+        android:id="@+id/fingerprint_status_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:text="Parmak izi doğrulamak için butona tıklayın."
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fingerprint_title" />
+
+    <!-- Parmak İzi Doğrulama Butonu -->
+    <Button
+        android:id="@+id/btn_fingerprint_authenticate"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#6200EE"
+        android:elevation="4dp"
+        android:padding="12dp"
+        android:text="Parmak İzi Doğrula"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fingerprint_status_text" />
+
+    <!-- Parmak İzi Sil Butonu -->
+    <Button
+        android:id="@+id/btn_remove_fingerprint"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#FF5252"
+        android:elevation="4dp"
+        android:padding="12dp"
+        android:text="Parmak İzi Sil"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_fingerprint_authenticate" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

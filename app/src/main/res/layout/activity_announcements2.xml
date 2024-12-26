@@ -84,6 +84,8 @@
         app:layout_constraintHorizontal_bias="0.97"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/recyclerViewAnnouncements"
-        app:layout_constraintVertical_bias="0.97" />
+        app:layout_constraintVertical_bias="0.97"
+        app:backgroundTint="@color/red"
+        app:tint="@android:color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

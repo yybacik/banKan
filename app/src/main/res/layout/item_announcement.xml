@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp"
     android:background="?android:attr/selectableItemBackground">
 
     <!-- Başlık -->
@@ -14,7 +13,8 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@android:color/black"
-        android:paddingBottom="4dp" />
+        android:paddingBottom="4dp"
+        android:layout_margin="16dp"/>
 
     <!-- Detaylar -->
     <TextView
@@ -22,5 +22,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="2dp"/>
+
+    <!-- Ayırıcı Çizgi -->
+    <View
+        android:id="@+id/viewSeparator2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="#a6a6a6" />
 </LinearLayout>

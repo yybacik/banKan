@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            app:boxStrokeColor="@color/purple_500"
+            app:boxStrokeColor="@color/highlightColor"
             app:boxBackgroundMode="outline"
             android:hint="Kullanıcı Adı">
 
@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            app:boxStrokeColor="@color/purple_500"
+            app:boxStrokeColor="@color/highlightColor"
             app:boxBackgroundMode="outline"
             android:hint="Soyad">
 
@@ -46,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            app:boxStrokeColor="@color/purple_500"
+            app:boxStrokeColor="@color/highlightColor"
             app:boxBackgroundMode="outline"
             android:hint="Kan Grubu">
 
@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            app:boxStrokeColor="@color/purple_500"
+            app:boxStrokeColor="@color/highlightColor"
             app:boxBackgroundMode="outline"
             android:hint="Şehir">
 
@@ -76,7 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            app:boxStrokeColor="@color/purple_500"
+            app:boxStrokeColor="@color/highlightColor"
             app:boxBackgroundMode="outline"
             android:hint="TC No">
 
@@ -91,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            app:boxStrokeColor="@color/purple_500"
+            app:boxStrokeColor="@color/highlightColor"
             app:boxBackgroundMode="outline"
             android:hint="Cinsiyet">
 
@@ -106,7 +106,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            app:boxStrokeColor="@color/purple_500"
+            app:boxStrokeColor="@color/highlightColor"
             app:boxBackgroundMode="outline"
             android:hint="Yaş">
 
@@ -121,7 +121,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            app:boxStrokeColor="@color/purple_500"
+            app:boxStrokeColor="@color/highlightColor"
             app:boxBackgroundMode="outline"
             android:hint="Boy">
 

@@ -1,63 +1,96 @@
 package com.atlantis.bankan
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.atlantis.bankan.adapters.NotesAdapter
+import com.atlantis.bankan.databinding.ActivityPimportantNotesBinding
+import com.atlantis.bankan.models.Note
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 
 class p_ImportantNotesActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityPimportantNotesBinding
+    private val firestore = FirebaseFirestore.getInstance()
+    private lateinit var notesAdapter: NotesAdapter
+    private var notesListener: ListenerRegistration? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pimportant_notes)
+        binding = ActivityPimportantNotesBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val noteInput = findViewById<EditText>(R.id.note_input)
-        val addNoteButton = findViewById<Button>(R.id.add_note_button)
-        val notesContainer = findViewById<LinearLayout>(R.id.notes_container)
+        setupRecyclerView()
+        setupAddNoteButton()
+        fetchNotes()
+    }
 
-        addNoteButton.setOnClickListener {
-            val noteText = noteInput.text.toString()
+    private fun setupRecyclerView() {
+        notesAdapter = NotesAdapter { note ->
+            deleteNote(note)
+        }
+        binding.notesRecyclerView.apply {
+            layoutManager = LinearLayoutManager(this@p_ImportantNotesActivity)
+            adapter = notesAdapter
+        }
+    }
+
+    private fun setupAddNoteButton() {
+        binding.addNoteButton.setOnClickListener {
+            val noteText = binding.noteInput.text.toString().trim()
             if (noteText.isNotEmpty()) {
-                val noteView = createNoteView(noteText)
-                notesContainer.addView(noteView)
-                noteInput.text.clear()
+                addNoteToFirestore(noteText)
+            } else {
+                Toast.makeText(this, "Not boş olamaz", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun createNoteView(noteText: String): LinearLayout {
-        val noteLayout = LinearLayout(this).apply {
-            orientation = LinearLayout.HORIZONTAL
-            setPadding(8, 8, 8, 8)
-        }
-
-        val noteTextView = EditText(this).apply {
-            setText(noteText)
-            textSize = 16f
-            setPadding(8, 8, 8, 8)
-            setBackgroundResource(R.drawable.note_background)
-            layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
-        }
-
-        val deleteButton = Button(this).apply {
-            text = "X"
-            textSize = 12f
-            setBackgroundResource(R.drawable.red_button_background)
-            layoutParams = LinearLayout.LayoutParams(64, 64).apply {
-                setMargins(8, 0, 0, 0)
+    private fun addNoteToFirestore(text: String) {
+        val note = Note(text = text)
+        firestore.collection("notes")
+            .add(note)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Not eklendi", Toast.LENGTH_SHORT).show()
+                binding.noteInput.text.clear()
             }
-            minWidth = 0
-            minHeight = 0
-            setPadding(0, 0, 0, 0)
-            setOnClickListener {
-                (noteLayout.parent as LinearLayout).removeView(noteLayout)
+            .addOnFailureListener {
+                Toast.makeText(this, "Not eklenirken hata oluştu", Toast.LENGTH_SHORT).show()
             }
-        }
+    }
 
-        noteLayout.addView(noteTextView)
-        noteLayout.addView(deleteButton)
+    private fun fetchNotes() {
+        notesListener = firestore.collection("notes")
+            .addSnapshotListener { snapshots, error ->
+                if (error != null) {
+                    Toast.makeText(this, "Veriler alınırken hata oluştu", Toast.LENGTH_SHORT).show()
+                    return@addSnapshotListener
+                }
 
-        return noteLayout
+                if (snapshots != null) {
+                    val notes = snapshots.documents.mapNotNull { doc ->
+                        doc.toObject(Note::class.java)?.copy(id = doc.id)
+                    }
+                    notesAdapter.submitList(notes)
+                }
+            }
+    }
+
+    private fun deleteNote(note: Note) {
+        firestore.collection("notes").document(note.id)
+            .delete()
+            .addOnSuccessListener {
+                Toast.makeText(this, "Not silindi", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Not silinirken hata oluştu", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        notesListener?.remove()
     }
 }

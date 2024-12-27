@@ -3,8 +3,10 @@ package com.atlantis.bankan
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.animation.AnimationUtils
 import android.widget.Button
+import android.widget.GridView
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -17,8 +19,9 @@ class ProfileActivity : AppCompatActivity() {
 
     private lateinit var db: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
+    private lateinit var profileImage: ImageView
 
-    // Seçilebilecek profil resimleri
+
     private val profileImages = arrayOf(
         R.drawable.img1,
         R.drawable.img2,
@@ -33,40 +36,38 @@ class ProfileActivity : AppCompatActivity() {
         R.drawable.img11,
         R.drawable.img12,
         R.drawable.img13,
-        R.drawable.img14,
-
+        R.drawable.img14
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        // Firebase Initialization
+
         db = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
 
-        // Düğme referansları
-        val button1 = findViewById<Button>(R.id.p_button1)
+
         val button2 = findViewById<Button>(R.id.p_button2)
         val button4 = findViewById<Button>(R.id.p_button4)
         val button5 = findViewById<Button>(R.id.p_button5)
-        val backButton = findViewById<Button>(R.id.backbutton) // Back button ID'si XML ile uyumlu olmalı
+        val backButton = findViewById<Button>(R.id.backbutton)
 
-        // Profil resmi referansı
-        val profileImage = findViewById<ImageView>(R.id.p_image1)
 
-        // İsim ve email TextView referansları
+        profileImage = findViewById<ImageView>(R.id.p_image1)
+
+
         val nameTextView = findViewById<TextView>(R.id.p_nametext)
         val emailTextView = findViewById<TextView>(R.id.p_mailtext)
 
-        // Profil resmine tıklanınca animasyon başlat ve resim seçme diyaloğunu göster
+
         profileImage.setOnClickListener {
             val rotateAnimation = AnimationUtils.loadAnimation(this, R.anim.rotate_animation)
             profileImage.startAnimation(rotateAnimation)
             showImageSelectionDialog()
         }
 
-        // Kullanıcı bilgilerini çek ve görüntüle
+
         val currentUser = auth.currentUser
         if (currentUser != null) {
             fetchUserInfo(currentUser.uid, nameTextView, emailTextView, profileImage)
@@ -75,10 +76,8 @@ class ProfileActivity : AppCompatActivity() {
             finish()
         }
 
-        // Butonların tıklama işlemleri
-        button1.setOnClickListener {
-            navigateToActivity(SettingsActivity::class.java)
-        }
+
+
 
         button2.setOnClickListener {
             navigateToActivity(p_MyInfoActivity::class.java)
@@ -97,7 +96,7 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-    // Kullanıcı bilgilerini Firestore'dan çekme ve görüntüleme
+
     private fun fetchUserInfo(uid: String, nameTextView: TextView, emailTextView: TextView, profileImageView: ImageView) {
         db.collection("users").document(uid)
             .get()
@@ -105,7 +104,7 @@ class ProfileActivity : AppCompatActivity() {
                 if (document != null && document.exists()) {
                     val username = document.getString("username") ?: "Kullanıcı Adı Bulunamadı"
                     val email = document.getString("email") ?: "Email Bulunamadı"
-                    val profileImageResId = document.getLong("profileImage")?.toInt() ?: R.drawable.img1 // Varsayılan resim
+                    val profileImageResId = document.getLong("profileImage")?.toInt() ?: R.drawable.img1
 
                     nameTextView.text = username
                     emailTextView.text = email
@@ -120,7 +119,6 @@ class ProfileActivity : AppCompatActivity() {
             }
     }
 
-    // Genel bir navigasyon metodu
     private fun <T> navigateToActivity(targetActivity: Class<T>) {
         try {
             val intent = Intent(this, targetActivity)
@@ -131,31 +129,44 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-    // Resim seçim diyalogunu gösterme
     private fun showImageSelectionDialog() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Profil Resmi Seçin")
 
-        // Resimlerin adlarını göstermek için bir dizi oluşturun
-        val imageNames = Array(profileImages.size) { index -> "Resim ${index + 1}" }
 
-        builder.setItems(imageNames) { dialog, which ->
-            // Seçilen resmi ayarla
-            val selectedImageResId = profileImages[which]
-            findViewById<ImageView>(R.id.p_image1).setImageResource(selectedImageResId)
+        val inflater = LayoutInflater.from(this)
+        val dialogView = inflater.inflate(R.layout.dialog_image_selection, null)
+        builder.setView(dialogView)
 
-            // Seçimi Firestore'a kaydet
-            saveProfileImageSelection(selectedImageResId)
+
+        builder.setNegativeButton("İptal") { dialogInterface, _ ->
+            dialogInterface.dismiss()
         }
 
-        builder.setNegativeButton("İptal") { dialog, _ ->
+
+        val dialog = builder.create()
+
+        val gridView = dialogView.findViewById<GridView>(R.id.gridViewImages)
+
+
+        val adapter = ImageAdapter(this, profileImages) { selectedImageResId ->
+
+            profileImage.setImageResource(selectedImageResId)
+
+
+            saveProfileImageSelection(selectedImageResId)
+
+
             dialog.dismiss()
         }
 
-        builder.show()
+        gridView.adapter = adapter
+
+
+        dialog.show()
     }
 
-    // Seçilen resmi Firestore'a kaydetme
+
     private fun saveProfileImageSelection(imageResId: Int) {
         val currentUser = auth.currentUser
         if (currentUser != null) {

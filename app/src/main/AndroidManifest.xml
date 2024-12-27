@@ -18,9 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.banKan"
         tools:targetApi="31">
-        <activity
-            android:name=".p_SettingsActivity"
-            android:exported="false" />
+
         <activity
             android:name=".p_MyInfoActivity"
             android:exported="false" />

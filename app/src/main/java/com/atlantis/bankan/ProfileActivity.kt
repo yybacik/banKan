@@ -52,6 +52,7 @@ class ProfileActivity : AppCompatActivity() {
         val button4 = findViewById<Button>(R.id.p_button4)
         val button5 = findViewById<Button>(R.id.p_button5)
         val backButton = findViewById<Button>(R.id.backbutton)
+        val button6 = findViewById<Button>(R.id.p_button6)
 
 
         profileImage = findViewById<ImageView>(R.id.p_image1)
@@ -77,7 +78,9 @@ class ProfileActivity : AppCompatActivity() {
         }
 
 
-
+        button6.setOnClickListener {
+            navigateToActivity(UserAnnouncementActivity::class.java)
+        }
 
         button2.setOnClickListener {
             navigateToActivity(p_MyInfoActivity::class.java)

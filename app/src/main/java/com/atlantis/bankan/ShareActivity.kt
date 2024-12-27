@@ -16,9 +16,9 @@ class ShareActivity : AppCompatActivity() {
         val tvAppShareMessage: TextView = findViewById(R.id.tv_app_share_message)
         val btnShare: Button = findViewById(R.id.btn_share)
 
-        tvAppShareInfo.text = "BanKan Uygulaması"
-        tvAppShareMessage.text = "Hayat kurtarmak için bir adım atın! BanKan uygulamasını paylaşarak topluluğumuza destek olun."
-        btnShare.text = "Paylaş"
+        tvAppShareInfo.text = getString(R.string.share_info)
+        tvAppShareMessage.text = getString(R.string.share_message)
+        btnShare.text = getString(R.string.share_button)
 
         btnShare.setOnClickListener {
             shareApp()
@@ -26,16 +26,13 @@ class ShareActivity : AppCompatActivity() {
     }
 
     private fun shareApp() {
-        val shareMessage = """
-            Hayat kurtarmak için bir adım at! BanKan uygulamasını indirerek kan bağışçıları ve ihtiyaç sahiplerini bir araya getiren topluluğumuza katılın. 💉❤️
-            https://play.google.com/store/apps/details?id=com.atlantis.bankan
-        """.trimIndent()
+        val shareMessage = getString(R.string.share_text)
 
         val shareIntent = Intent(Intent.ACTION_SEND).apply {
             type = "text/plain"
             putExtra(Intent.EXTRA_TEXT, shareMessage)
         }
 
-        startActivity(Intent.createChooser(shareIntent, "Uygulamayı Paylaş"))
+        startActivity(Intent.createChooser(shareIntent, getString(R.string.share_intent_message)))
     }
 }

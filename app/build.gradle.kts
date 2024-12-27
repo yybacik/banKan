@@ -47,6 +47,10 @@ dependencies {
     implementation("com.google.firebase:firebase-database:21.0.0")
     implementation("com.google.firebase:firebase-auth:22.1.0")
     implementation("com.google.firebase:firebase-firestore:24.9.0")
+    implementation ("com.google.firebase:firebase-firestore-ktx:24.4.4")
+    implementation ("com.google.firebase:firebase-auth-ktx:21.5.0")
+
+
 
     implementation("com.google.firebase:firebase-analytics")
     implementation(libs.androidx.core.ktx)
@@ -61,4 +65,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
+    implementation ("com.google.zxing:core:3.4.1")
 }

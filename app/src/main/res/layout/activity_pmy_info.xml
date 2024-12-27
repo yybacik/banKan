@@ -1,83 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Username -->
-        <EditText
-            android:id="@+id/usernameEditText"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Kullanıcı Adı" />
+            android:layout_marginBottom="12dp"
+            app:boxStrokeColor="@color/purple_500"
+            app:boxBackgroundMode="outline"
+            android:hint="Kullanıcı Adı">
 
-        <!-- Surname -->
-        <EditText
-            android:id="@+id/surname_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Soyad" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/usernameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Blood Type -->
-        <EditText
-            android:id="@+id/blood_type_edit_text"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Kan Grubu" />
+            android:layout_marginBottom="12dp"
+            app:boxStrokeColor="@color/purple_500"
+            app:boxBackgroundMode="outline"
+            android:hint="Soyad">
 
-        <!-- City -->
-        <EditText
-            android:id="@+id/city_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Şehir" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/surname_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- TC No -->
-        <EditText
-            android:id="@+id/tcno_edit_text"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="TC No" />
+            android:layout_marginBottom="12dp"
+            app:boxStrokeColor="@color/purple_500"
+            app:boxBackgroundMode="outline"
+            android:hint="Kan Grubu">
 
-        <!-- Gender -->
-        <EditText
-            android:id="@+id/gender_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Cinsiyet" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/blood_type_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Age -->
-        <EditText
-            android:id="@+id/age_edit_text"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Yaş" />
+            android:layout_marginBottom="12dp"
+            app:boxStrokeColor="@color/purple_500"
+            app:boxBackgroundMode="outline"
+            android:hint="Şehir">
 
-        <!-- Height -->
-        <EditText
-            android:id="@+id/height_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Boy" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/city_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Weight -->
-        <EditText
-            android:id="@+id/weight_edit_text"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Kilo" />
+            android:layout_marginBottom="12dp"
+            app:boxStrokeColor="@color/purple_500"
+            app:boxBackgroundMode="outline"
+            android:hint="TC No">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tcno_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:boxStrokeColor="@color/purple_500"
+            app:boxBackgroundMode="outline"
+            android:hint="Cinsiyet">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/gender_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:boxStrokeColor="@color/purple_500"
+            app:boxBackgroundMode="outline"
+            android:hint="Yaş">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/age_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:boxStrokeColor="@color/purple_500"
+            app:boxBackgroundMode="outline"
+            android:hint="Boy">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/height_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:boxStrokeColor="@color/highlightColor"
+            app:boxBackgroundMode="outline"
+            android:hint="Kilo">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/weight_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            app:boxStrokeColor="@color/highlightColor"
+            app:boxBackgroundMode="outline"
+            android:hint="Telefon Numarası">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phone_number_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Save Button -->
         <Button
             android:id="@+id/save_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Kaydet" />
+            android:text="Kaydet"
+            android:backgroundTint="@color/highlightColor"
+            android:textColor="@color/white"
+            android:padding="12dp"
+            android:textAllCaps="false"
+            android:layout_marginTop="8dp" />
     </LinearLayout>
 </ScrollView>

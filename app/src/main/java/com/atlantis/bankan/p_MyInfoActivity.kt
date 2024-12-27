@@ -23,7 +23,7 @@ class p_MyInfoActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         // UI Elementlerini tanımlama
-        val usernameEditText = findViewById<EditText>(R.id.usernameEditText) // "usernameEditText" ID'si
+        val usernameEditText = findViewById<EditText>(R.id.usernameEditText)
         val surnameEditText = findViewById<EditText>(R.id.surname_edit_text)
         val bloodTypeEditText = findViewById<EditText>(R.id.blood_type_edit_text)
         val cityEditText = findViewById<EditText>(R.id.city_edit_text)
@@ -32,6 +32,7 @@ class p_MyInfoActivity : AppCompatActivity() {
         val ageEditText = findViewById<EditText>(R.id.age_edit_text)
         val heightEditText = findViewById<EditText>(R.id.height_edit_text)
         val weightEditText = findViewById<EditText>(R.id.weight_edit_text)
+        val phoneNumberEditText = findViewById<EditText>(R.id.phone_number_edit_text) // Yeni Alan
         val saveButton = findViewById<Button>(R.id.save_button)
 
         val currentUser = auth.currentUser
@@ -46,7 +47,8 @@ class p_MyInfoActivity : AppCompatActivity() {
                 genderEditText,
                 ageEditText,
                 heightEditText,
-                weightEditText
+                weightEditText,
+                phoneNumberEditText // Yeni Alan
             )
         } ?: run {
             Toast.makeText(this, "Kullanıcı oturumu kapalı.", Toast.LENGTH_SHORT).show()
@@ -63,6 +65,7 @@ class p_MyInfoActivity : AppCompatActivity() {
             val updatedAge = ageEditText.text.toString()
             val updatedHeight = heightEditText.text.toString()
             val updatedWeight = weightEditText.text.toString()
+            val updatedPhoneNumber = phoneNumberEditText.text.toString() // Yeni Alan
 
             currentUser?.let {
                 saveUserInfo(
@@ -75,7 +78,8 @@ class p_MyInfoActivity : AppCompatActivity() {
                     updatedGender,
                     updatedAge,
                     updatedHeight,
-                    updatedWeight
+                    updatedWeight,
+                    updatedPhoneNumber // Yeni Alan
                 )
             }
         }
@@ -91,10 +95,11 @@ class p_MyInfoActivity : AppCompatActivity() {
         gender: String,
         age: String,
         height: String,
-        weight: String
+        weight: String,
+        phoneNumber: String // Yeni Alan
     ) {
         val userInfo = hashMapOf(
-            "username" to username, // "username" olarak güncellendi
+            "username" to username,
             "surname" to surname,
             "bloodType" to bloodType,
             "city" to city,
@@ -102,11 +107,12 @@ class p_MyInfoActivity : AppCompatActivity() {
             "gender" to gender,
             "age" to age,
             "height" to height,
-            "weight" to weight
+            "weight" to weight,
+            "phone" to phoneNumber // Yeni Alan
         )
 
         db.collection("users").document(uid)
-            .set(userInfo, SetOptions.merge()) // Var olan veriyi korumak için merge kullanılıyor
+            .set(userInfo, SetOptions.merge())
             .addOnSuccessListener {
                 Log.d("p_MyInfoActivity", "Bilgiler başarıyla kaydedildi.")
                 Toast.makeText(this, "Bilgiler başarıyla kaydedildi.", Toast.LENGTH_SHORT).show()
@@ -127,7 +133,8 @@ class p_MyInfoActivity : AppCompatActivity() {
         genderEditText: EditText,
         ageEditText: EditText,
         heightEditText: EditText,
-        weightEditText: EditText
+        weightEditText: EditText,
+        phoneNumberEditText: EditText // Yeni Alan
     ) {
         db.collection("users").document(uid)
             .get()
@@ -143,6 +150,7 @@ class p_MyInfoActivity : AppCompatActivity() {
                     ageEditText.setText(document.getString("age") ?: "")
                     heightEditText.setText(document.getString("height") ?: "")
                     weightEditText.setText(document.getString("weight") ?: "")
+                    phoneNumberEditText.setText(document.getString("phone") ?: "") // Yeni Alan
                 } else {
                     Log.d("p_MyInfoActivity", "Belge bulunamadı.")
                     Toast.makeText(this, "Kullanıcı bilgileri bulunamadı.", Toast.LENGTH_SHORT).show()

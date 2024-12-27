@@ -169,17 +169,10 @@ class AnnouncementAddActivity : AppCompatActivity() {
             }
 
             val announcement = AnnouncementIC(city, district, hospital, bloodType, phone, generalInfo)
-            val firestoreHelper = FireBaseFireStoreHelper()
-            firestoreHelper.addAnnouncement(announcement, onSuccess = {
-                Toast.makeText(this, "Duyuru başarıyla eklendi!", Toast.LENGTH_SHORT).show()
-                val resultIntent = Intent()
-                resultIntent.putExtra("new_announcement", announcement)
-                setResult(RESULT_OK, resultIntent)
-                finish() //
-            }, onFailure = { error ->
-                Toast.makeText(this, "Hata: $error", Toast.LENGTH_SHORT).show()
-            })
-
+            val resultIntent = Intent()
+            resultIntent.putExtra("new_announcement", announcement)
+            setResult(RESULT_OK, resultIntent)
+            finish()
         }
 
         buttonClose.setOnClickListener{

@@ -1,0 +1,9 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
+    <!-- İç kısmı tamamen şeffaf yapıyoruz -->
+    <solid android:color="#A52A2A" /> <!-- Bordo iç renk -->
+
+    <!-- Dış çerçeve rengi ve kalınlığı -->
+    <stroke
+        android:width="8dp"
+        android:color="#A52A2A" /> <!-- Çerçevenin kenar rengi bordo -->
+</shape>

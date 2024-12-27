@@ -25,7 +25,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            app:boxStrokeColor="@color/red"/>
+            app:boxStrokeColor="@color/red"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -47,7 +49,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            app:boxStrokeColor="@color/red"/>
+            app:boxStrokeColor="@color/red"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,7 +66,8 @@
         android:text="Sign In"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordInputLayout" />
+        app:layout_constraintTop_toBottomOf="@id/passwordInputLayout"
+        android:textColor="@color/white" />
 
     <!-- Sign Up Link (If user does not have an account) -->
     <TextView

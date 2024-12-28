@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/settings_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
+    android:background="@color/background_material_light"
     tools:context=".SettingsActivity">
 
     <LinearLayout
@@ -13,71 +15,150 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- Kullanıcı Adı Etiketi -->
         <TextView
             android:id="@+id/username_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Kullanıcı Adı"
+            android:textSize="16sp"
+            android:textStyle="bold"
             android:layout_marginTop="16dp" />
 
-        <EditText
-            android:id="@+id/edittext_username"
+        <!-- Kullanıcı Adı Girişi -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/username_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="8dp"
+            app:boxStrokeColor="@color/highlightColor"
+            app:hintEnabled="false">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edittext_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Kullanıcı Adı"
+                android:drawableStart="@drawable/ic_person"
+                android:padding="12dp"
+                android:background="@drawable/edittext_background"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- E-posta Adresi Etiketi -->
         <TextView
             android:id="@+id/email_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="E-posta Adresi"
+            android:textSize="16sp"
+            android:textStyle="bold"
             android:layout_marginTop="16dp" />
 
-        <EditText
-            android:id="@+id/edittext_email"
+        <!-- E-posta Adresi Girişi -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/email_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="8dp"
+            app:boxStrokeColor="@color/highlightColor"
+            app:hintEnabled="false">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edittext_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="E-posta Adresi"
+                android:drawableStart="@drawable/ic_email"
+                android:padding="12dp"
+                android:background="@drawable/edittext_background"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Şifre Etiketi -->
         <TextView
             android:id="@+id/password_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Yeni Şifre"
+            android:textSize="16sp"
+            android:textStyle="bold"
             android:layout_marginTop="16dp" />
 
-        <EditText
-            android:id="@+id/edittext_password"
+        <!-- Şifre Girişi -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="8dp"
+            app:boxStrokeColor="@color/highlightColor"
+            app:hintEnabled="false">
 
-        <Button
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edittext_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Yeni Şifre"
+                android:drawableStart="@drawable/ic_lock"
+                android:padding="12dp"
+                android:background="@drawable/edittext_background"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Bilgileri Güncelle Butonu -->
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_update_info"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="24dp"
+            android:text="Bilgileri Güncelle"
+            app:cornerRadius="8dp"
+            app:backgroundTint="@color/colorError"
+            android:textColor="@android:color/white" />
 
+        <!-- Hesap Silme Etiketi -->
         <TextView
             android:id="@+id/delete_account_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Hesabınızı Silmek İster misiniz?"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/highlightColor"
             android:layout_marginTop="32dp" />
 
-        <EditText
-            android:id="@+id/edittext_delete_reason"
+        <!-- Silme Nedeni Girişi -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/delete_reason_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:inputType="textMultiLine"
-            android:minLines="3"
-            android:maxLines="5"/>
+            app:boxStrokeColor="@color/highlightColor"
+            app:hintEnabled="false">
 
-        <Button
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edittext_delete_reason"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Hesabı neden siliyorsunuz?"
+                android:drawableStart="@drawable/ic_reason"
+                android:padding="12dp"
+                android:background="@drawable/edittext_background"
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                android:maxLines="5" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Hesabı Sil Butonu -->
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_delete_account"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="24dp"
+            android:text="Hesabı Sil"
+            app:cornerRadius="8dp"
+            app:backgroundTint="@color/colorError"
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 </ScrollView>

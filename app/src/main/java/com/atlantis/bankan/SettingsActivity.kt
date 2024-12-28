@@ -1,14 +1,16 @@
 package com.atlantis.bankan
 
+import android.app.AlertDialog
 import android.os.Bundle
+import android.text.InputType
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.EmailAuthProvider
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class SettingsActivity : AppCompatActivity() {
@@ -16,13 +18,14 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
 
-    private lateinit var usernameLabel: TextView
+    // TextView etiketlerini kaldırın veya sadece gerekli olanları bırakın
+    //private lateinit var usernameLabel: TextView
     private lateinit var editTextUsername: EditText
 
-    private lateinit var emailLabel: TextView
+    //private lateinit var emailLabel: TextView
     private lateinit var editTextEmail: EditText
 
-    private lateinit var passwordLabel: TextView
+    //private lateinit var passwordLabel: TextView
     private lateinit var editTextPassword: EditText
 
     private lateinit var buttonUpdateInfo: Button
@@ -40,13 +43,13 @@ class SettingsActivity : AppCompatActivity() {
         firestore = FirebaseFirestore.getInstance()
 
         // XML'deki view'leri Kotlin tarafında tanımlıyoruz
-        usernameLabel = findViewById(R.id.username_label)
+        //usernameLabel = findViewById(R.id.username_label) // Kaldırıldı
         editTextUsername = findViewById(R.id.edittext_username)
 
-        emailLabel = findViewById(R.id.email_label)
+        //emailLabel = findViewById(R.id.email_label) // Kaldırıldı
         editTextEmail = findViewById(R.id.edittext_email)
 
-        passwordLabel = findViewById(R.id.password_label)
+        //passwordLabel = findViewById(R.id.password_label) // Kaldırıldı
         editTextPassword = findViewById(R.id.edittext_password)
 
         buttonUpdateInfo = findViewById(R.id.button_update_info)
@@ -56,14 +59,14 @@ class SettingsActivity : AppCompatActivity() {
         buttonDeleteAccount = findViewById(R.id.button_delete_account)
 
         // TextView, EditText ve Button'ların text/hint değerlerini Activity içinde veriyoruz
-        usernameLabel.text = "Kullanıcı Adı"
-        editTextUsername.hint = "Kullanıcı adınızı girin"
+        //usernameLabel.text = "Kullanıcı Adı" // Kaldırıldı
+        //editTextUsername.hint = "Kullanıcı adınızı girin"
 
-        emailLabel.text = "E-posta Adresi"
-        editTextEmail.hint = "Yeni e-posta adresinizi girin"
+        //emailLabel.text = "E-posta Adresi" // Kaldırıldı
+        //editTextEmail.hint = "Yeni e-posta adresinizi girin"
 
-        passwordLabel.text = "Yeni Şifre"
-        editTextPassword.hint = "Yeni şifrenizi girin"
+        //passwordLabel.text = "Yeni Şifre" // Kaldırıldı
+        //editTextPassword.hint = "Yeni şifrenizi girin"
 
         buttonUpdateInfo.text = "Bilgileri Güncelle"
 
@@ -197,40 +200,112 @@ class SettingsActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val userId = currentUser.uid
-
-            val reasonData = mapOf(
-                "deleteReason" to deleteReason,
-                "deletedAt" to System.currentTimeMillis()
-            )
-
-            firestore.collection("users").document(userId)
-                .update(reasonData)
-                .addOnSuccessListener {
-                    currentUser.delete()
-                        .addOnSuccessListener {
-                            Toast.makeText(
-                                this,
-                                "Hesabınız silindi.",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            finish()
-                        }
-                        .addOnFailureListener { exception ->
-                            Toast.makeText(
-                                this,
-                                "Hesap silme hatası: ${exception.message}",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
+            // Kullanıcıdan şifreyi yeniden girmesini isteyin (re-authentication)
+            showReAuthenticationDialog { password ->
+                reAuthenticateUser(currentUser, password) { success, message ->
+                    if (success) {
+                        // Re-authentication başarılı, şimdi hesabı sil
+                        deleteUserAccount(currentUser, deleteReason)
+                    } else {
+                        Toast.makeText(this, "Yeniden doğrulama başarısız: $message", Toast.LENGTH_SHORT).show()
+                    }
                 }
-                .addOnFailureListener { exception ->
-                    Toast.makeText(
-                        this,
-                        "Silme nedeni kaydedilemedi: ${exception.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+            }
         }
+    }
+
+    private fun showReAuthenticationDialog(onPasswordEntered: (String) -> Unit) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Hesabınızı Silmek İçin Şifrenizi Girin")
+
+        val input = EditText(this)
+        input.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+        builder.setView(input)
+
+        builder.setPositiveButton("Onayla") { dialog, _ ->
+            val password = input.text.toString()
+            if (password.isNotEmpty()) {
+                onPasswordEntered(password)
+            } else {
+                Toast.makeText(this, "Şifre boş olamaz.", Toast.LENGTH_SHORT).show()
+            }
+            dialog.dismiss()
+        }
+
+        builder.setNegativeButton("İptal") { dialog, _ ->
+            dialog.cancel()
+        }
+
+        builder.show()
+    }
+
+    private fun reAuthenticateUser(
+        user: com.google.firebase.auth.FirebaseUser,
+        password: String,
+        callback: (Boolean, String?) -> Unit
+    ) {
+        val credential = EmailAuthProvider.getCredential(user.email ?: "", password)
+        user.reauthenticate(credential)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    callback(true, null)
+                } else {
+                    callback(false, task.exception?.message)
+                }
+            }
+    }
+
+    private fun deleteUserAccount(user: com.google.firebase.auth.FirebaseUser, deleteReason: String) {
+        val userId = user.uid
+
+        // İsteğe bağlı: Silme nedenini başka bir koleksiyona kaydedebilirsiniz
+        val deletedUsersCollection = firestore.collection("deleted_users")
+        val deletedUserData = mapOf(
+            "userId" to userId,
+            "deleteReason" to deleteReason,
+            "deletedAt" to System.currentTimeMillis()
+        )
+
+        // Silme nedenini kaydedin
+        deletedUsersCollection.document(userId)
+            .set(deletedUserData)
+            .addOnSuccessListener {
+                // Kullanıcının Firestore verilerini silin
+                firestore.collection("users").document(userId)
+                    .delete()
+                    .addOnSuccessListener {
+                        // Firebase Authentication hesabını silin
+                        user.delete()
+                            .addOnSuccessListener {
+                                Toast.makeText(
+                                    this,
+                                    "Hesabınız başarıyla silindi.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                finish() // Activity'i kapatın veya giriş ekranına yönlendirin
+                            }
+                            .addOnFailureListener { exception ->
+                                Toast.makeText(
+                                    this,
+                                    "Hesap silme sırasında hata oluştu: ${exception.message}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                    }
+                    .addOnFailureListener { exception ->
+                        Toast.makeText(
+                            this,
+                            "Kullanıcı verileri silinirken hata oluştu: ${exception.message}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(
+                    this,
+                    "Silme nedeni kaydedilemedi: ${exception.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
     }
 }

@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Sil"
-            android:src="@drawable/ic_delete"
+            android:src="@drawable/ic_close"
             app:tint="@color/highlightColor" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

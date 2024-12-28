@@ -22,6 +22,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.pdf.PdfDocument
+import com.google.firebase.firestore.firestoreSettings
 
 class ShareActivity : AppCompatActivity() {
 
@@ -104,6 +105,7 @@ class ShareActivity : AppCompatActivity() {
             .addOnSuccessListener { document ->
                 if (document != null && document.exists()) {
                     val username = document.getString("username") ?: "Bilinmiyor"
+                    val name = document.getString("firstname") ?: "Bilinmiyor"
                     val surname = document.getString("surname") ?: "Bilinmiyor"
                     val email = document.getString("email") ?: "Bilinmiyor"
                     val tcNo = document.getString("tcNo") ?: "Bilinmiyor"
@@ -117,6 +119,7 @@ class ShareActivity : AppCompatActivity() {
                     pdfFile = createPdfForUser(
                         context = this,
                         username = username,
+                        name = name,
                         surname = surname,
                         tcNo = tcNo,
                         gender = gender,
@@ -277,6 +280,7 @@ class ShareActivity : AppCompatActivity() {
     private fun createPdfForUser(
         context: Context,
         username: String,
+        name: String,
         surname: String,
         tcNo: String,
         gender: String,
@@ -298,6 +302,8 @@ class ShareActivity : AppCompatActivity() {
 
         var currentY = 100f
         canvas.drawText("Kullanıcı Adı: $username", 50f, currentY, paint)
+        currentY += 40f
+        canvas.drawText("Adı: $name", 50f, currentY, paint)
         currentY += 40f
         canvas.drawText("Soyadı: $surname", 50f, currentY, paint)
         currentY += 40f

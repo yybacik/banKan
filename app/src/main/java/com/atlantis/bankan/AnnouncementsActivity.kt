@@ -64,6 +64,11 @@ class AnnouncementsActivity : AppCompatActivity() {
                 1
             )
         }
+        binding.buttonFilter.setOnClickListener {
+            startActivityForResult(
+                Intent(this,FilterActivity::class.java),2
+            )
+        }
 
 
 

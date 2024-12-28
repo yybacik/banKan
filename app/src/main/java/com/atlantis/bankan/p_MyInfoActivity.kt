@@ -24,6 +24,7 @@ class p_MyInfoActivity : AppCompatActivity() {
 
         // UI Elementlerini tanımlama
         val usernameEditText = findViewById<EditText>(R.id.usernameEditText)
+        val firstnameEditText = findViewById<EditText>(R.id.firstname_edit_text)
         val surnameEditText = findViewById<EditText>(R.id.surname_edit_text)
         val bloodTypeEditText = findViewById<EditText>(R.id.blood_type_edit_text)
         val cityEditText = findViewById<EditText>(R.id.city_edit_text)
@@ -32,7 +33,7 @@ class p_MyInfoActivity : AppCompatActivity() {
         val ageEditText = findViewById<EditText>(R.id.age_edit_text)
         val heightEditText = findViewById<EditText>(R.id.height_edit_text)
         val weightEditText = findViewById<EditText>(R.id.weight_edit_text)
-        val phoneNumberEditText = findViewById<EditText>(R.id.phone_number_edit_text) // Yeni Alan
+        val phoneNumberEditText = findViewById<EditText>(R.id.phone_number_edit_text)
         val saveButton = findViewById<Button>(R.id.save_button)
 
         val currentUser = auth.currentUser
@@ -40,6 +41,7 @@ class p_MyInfoActivity : AppCompatActivity() {
             loadUserInfo(
                 it.uid,
                 usernameEditText,
+                firstnameEditText,
                 surnameEditText,
                 bloodTypeEditText,
                 cityEditText,
@@ -48,7 +50,7 @@ class p_MyInfoActivity : AppCompatActivity() {
                 ageEditText,
                 heightEditText,
                 weightEditText,
-                phoneNumberEditText // Yeni Alan
+                phoneNumberEditText
             )
         } ?: run {
             Toast.makeText(this, "Kullanıcı oturumu kapalı.", Toast.LENGTH_SHORT).show()
@@ -57,6 +59,7 @@ class p_MyInfoActivity : AppCompatActivity() {
 
         saveButton.setOnClickListener {
             val updatedUsername = usernameEditText.text.toString()
+            val updatedFirstname = firstnameEditText.text.toString() // Yeni
             val updatedSurname = surnameEditText.text.toString()
             val updatedBloodType = bloodTypeEditText.text.toString()
             val updatedCity = cityEditText.text.toString()
@@ -65,12 +68,13 @@ class p_MyInfoActivity : AppCompatActivity() {
             val updatedAge = ageEditText.text.toString()
             val updatedHeight = heightEditText.text.toString()
             val updatedWeight = weightEditText.text.toString()
-            val updatedPhoneNumber = phoneNumberEditText.text.toString() // Yeni Alan
+            val updatedPhoneNumber = phoneNumberEditText.text.toString()
 
             currentUser?.let {
                 saveUserInfo(
                     it.uid,
                     updatedUsername,
+                    updatedFirstname,
                     updatedSurname,
                     updatedBloodType,
                     updatedCity,
@@ -79,7 +83,7 @@ class p_MyInfoActivity : AppCompatActivity() {
                     updatedAge,
                     updatedHeight,
                     updatedWeight,
-                    updatedPhoneNumber // Yeni Alan
+                    updatedPhoneNumber
                 )
             }
         }
@@ -88,6 +92,7 @@ class p_MyInfoActivity : AppCompatActivity() {
     private fun saveUserInfo(
         uid: String,
         username: String,
+        firstname: String,
         surname: String,
         bloodType: String,
         city: String,
@@ -96,10 +101,11 @@ class p_MyInfoActivity : AppCompatActivity() {
         age: String,
         height: String,
         weight: String,
-        phoneNumber: String // Yeni Alan
+        phoneNumber: String
     ) {
         val userInfo = hashMapOf(
             "username" to username,
+            "firstname" to firstname,
             "surname" to surname,
             "bloodType" to bloodType,
             "city" to city,
@@ -108,7 +114,7 @@ class p_MyInfoActivity : AppCompatActivity() {
             "age" to age,
             "height" to height,
             "weight" to weight,
-            "phone" to phoneNumber // Yeni Alan
+            "phone" to phoneNumber
         )
 
         db.collection("users").document(uid)
@@ -126,6 +132,7 @@ class p_MyInfoActivity : AppCompatActivity() {
     private fun loadUserInfo(
         uid: String,
         usernameEditText: EditText,
+        firstnameEditText: EditText,
         surnameEditText: EditText,
         bloodTypeEditText: EditText,
         cityEditText: EditText,
@@ -134,7 +141,7 @@ class p_MyInfoActivity : AppCompatActivity() {
         ageEditText: EditText,
         heightEditText: EditText,
         weightEditText: EditText,
-        phoneNumberEditText: EditText // Yeni Alan
+        phoneNumberEditText: EditText
     ) {
         db.collection("users").document(uid)
             .get()
@@ -142,6 +149,7 @@ class p_MyInfoActivity : AppCompatActivity() {
                 if (document != null && document.exists()) {
                     Log.d("p_MyInfoActivity", "Kullanıcı verileri yüklendi.")
                     usernameEditText.setText(document.getString("username") ?: "")
+                    firstnameEditText.setText(document.getString("firstname") ?: "")
                     surnameEditText.setText(document.getString("surname") ?: "")
                     bloodTypeEditText.setText(document.getString("bloodType") ?: "")
                     cityEditText.setText(document.getString("city") ?: "")
@@ -150,7 +158,7 @@ class p_MyInfoActivity : AppCompatActivity() {
                     ageEditText.setText(document.getString("age") ?: "")
                     heightEditText.setText(document.getString("height") ?: "")
                     weightEditText.setText(document.getString("weight") ?: "")
-                    phoneNumberEditText.setText(document.getString("phone") ?: "") // Yeni Alan
+                    phoneNumberEditText.setText(document.getString("phone") ?: "")
                 } else {
                     Log.d("p_MyInfoActivity", "Belge bulunamadı.")
                     Toast.makeText(this, "Kullanıcı bilgileri bulunamadı.", Toast.LENGTH_SHORT).show()

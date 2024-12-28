@@ -11,6 +11,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,7 +22,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="520dp"
@@ -31,7 +31,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:background="@drawable/top_background_gradient" />
-
 
                 <FrameLayout
                     android:id="@+id/profile_frame"
@@ -44,16 +43,14 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView">
 
-
                     <ImageView
                         android:id="@+id/p_image1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="5dp"
                         android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/img1" /> <!-- Varsayılan resim -->
+                        app:srcCompat="@drawable/img1" />
                 </FrameLayout>
-
 
                 <TextView
                     android:id="@+id/p_nametext"
@@ -66,7 +63,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/profile_frame" />
-
 
                 <TextView
                     android:id="@+id/p_mailtext"
@@ -87,7 +83,7 @@
                 android:orientation="vertical"
                 android:layout_marginTop="12dp">
 
-
+                <!-- Bilgilerim Butonu -->
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/p_button2"
                     style="@android:style/Widget.Button"
@@ -96,7 +92,7 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginBottom="8dp"
-                    android:background="@android:color/transparent"
+                    android:background="@drawable/red_border_button"
                     android:drawableStart="@drawable/ic_2"
                     android:drawablePadding="20dp"
                     android:paddingStart="20dp"
@@ -106,6 +102,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
+                <!-- Duyurularım Butonu -->
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/p_button6"
                     style="@android:style/Widget.Button"
@@ -114,7 +111,7 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginBottom="8dp"
-                    android:background="@android:color/transparent"
+                    android:background="@drawable/red_border_button"
                     android:drawableStart="@drawable/ic_6"
                     android:drawablePadding="20dp"
                     android:paddingStart="20dp"
@@ -123,7 +120,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-
+                <!-- Önemli Notlar Butonu -->
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/p_button4"
                     style="@android:style/Widget.Button"
@@ -132,7 +129,7 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginBottom="8dp"
-                    android:background="@android:color/transparent"
+                    android:background="@drawable/red_border_button"
                     android:drawableStart="@drawable/ic_4"
                     android:drawablePadding="20dp"
                     android:paddingStart="20dp"
@@ -141,6 +138,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
+                <!-- Parmak İzi Ayarları Butonu -->
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/p_button5"
                     style="@android:style/Widget.Button"
@@ -149,7 +147,7 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginBottom="8dp"
-                    android:background="@android:color/transparent"
+                    android:background="@drawable/red_border_button"
                     android:drawableStart="@drawable/ic_5"
                     android:drawablePadding="20dp"
                     android:paddingStart="20dp"
@@ -158,19 +156,20 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-
+                <!-- Back to Main Page Butonu (İsterseniz buna da kırmızı kenarlık ekleyebilirsiniz) -->
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/backbutton"
+                    style="@android:style/Widget.Button"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:background="@android:color/transparent"
                     android:layout_marginStart="32dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginTop="12dp"
                     android:text="Back to Main Page"
-                    android:textColor="#ffffff"
+                    android:textColor="#A52A2A"
                     android:textStyle="bold"
-                    android:textSize="18sp" />
+                    android:textSize="21sp"
+                    android:background="@drawable/red_border_button" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

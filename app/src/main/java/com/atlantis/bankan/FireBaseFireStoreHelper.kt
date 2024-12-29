@@ -3,13 +3,11 @@ package com.atlantis.bankan
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
 class FireBaseFireStoreHelper {
-
     private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
-
-
 
     fun addAnnouncement(
         announcement: AnnouncementIC,
@@ -17,9 +15,8 @@ class FireBaseFireStoreHelper {
         onFailure: (String?) -> Unit
     ) {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
-
-
         val documentId = firestore.collection("announcements").document().id
+        val timestamp = System.currentTimeMillis()
 
         val announcementData = hashMapOf(
             "city" to announcement.city,
@@ -28,6 +25,7 @@ class FireBaseFireStoreHelper {
             "bloodType" to announcement.bloodType,
             "phoneNumber" to announcement.phoneNumber,
             "generalInfo" to announcement.generalInfo,
+            "timestamp" to timestamp  // Timestamp eklendi
         )
 
         firestore.collection("announcements")
@@ -51,19 +49,19 @@ class FireBaseFireStoreHelper {
             }
     }
 
-
     fun getUserAnnouncements(onSuccess: (List<AnnouncementIC>) -> Unit, onFailure: (String?) -> Unit) {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
 
         firestore.collection("usersAnnouncements")
             .document(userId)
             .collection("user_announcements")
+            .orderBy("timestamp", Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener { result ->
                 val announcements = mutableListOf<AnnouncementIC>()
                 for (document in result) {
                     val announcement = document.toObject(AnnouncementIC::class.java)
-                    announcement.id = document.id // Belge ID'sini kaydet
+                    announcement.id = document.id
                     announcements.add(announcement)
                 }
                 onSuccess(announcements)
@@ -76,6 +74,7 @@ class FireBaseFireStoreHelper {
     fun getGeneralAnnouncements(onSuccess: (List<AnnouncementIC>) -> Unit, onFailure: (String?) -> Unit) {
         Log.d("FirestoreHelper", "Fetching general announcements...")
         firestore.collection("announcements")
+            .orderBy("timestamp", Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener { result ->
                 val announcements = mutableListOf<AnnouncementIC>()
@@ -98,7 +97,6 @@ class FireBaseFireStoreHelper {
                 onFailure(exception.message)
             }
     }
-
 
     fun deleteAnnouncement(
         announcementId: String,

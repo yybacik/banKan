@@ -9,5 +9,6 @@ data class AnnouncementIC (
     val bloodType: String = "",
     val phoneNumber: String = "",
     val generalInfo: String = "",
-    var id: String?=null
+    var id: String?=null,
+    val timestamp: Long = 0
 ): Serializable
